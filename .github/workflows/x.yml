@@ -14,19 +14,21 @@ jobs:
         with:
           version: 'mandrel-22.3.1.0-Final'
           java-version: '17'
-          components: 'native-image'
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          native-image-job-reports: 'true'
+          # mandrel不额外区分native-image组件
+          #components: 'native-image'
+          # mandrel无native-image-job-reports配置
+          #native-image-job-reports: 'true'
 
-      - name: Build and run HelloWorld.java
+      - name: Build and run Hi.java
         run: |
-          echo 'public class HelloWorld { public static void main(String[] args) { System.out.println("Hello, World!"); } }' > HelloWorld.java
-          javac HelloWorld.java
-          native-image HelloWorld
-          ./helloworld
+          echo 'public class Hi { public static void main(String[] args) { System.out.println("Hi!"); } }' > Hi.java
+          javac Hi.java
+          native-image Hi
+          ./hi
       
       - name: Upload binary
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: helloworld-${{ matrix.os }}
-          path: helloworld*
+          name: hi-${{ matrix.os }}
+          path: hi*
