@@ -1,34 +1,11 @@
-name: GraalVM Native Image builds
-on: [push, pull_request]
+name: simple-sample
+on: workflow_dispatch
 jobs:
   build:
-    name: HelloWorld on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
+    runs-on: ubuntu-24.04-arm
     steps:
-      - uses: actions/checkout@v3
-
-      - uses: graalvm/setup-graalvm@v1
-        with:
-          version: 'mandrel-22.3.1.0-Final'
-          java-version: '17'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          # mandrel不额外区分native-image组件
-          #components: 'native-image'
-          # mandrel无native-image-job-reports配置
-          #native-image-job-reports: 'true'
-
-      - name: Build and run Hi.java
-        run: |
-          echo 'public class Hi { public static void main(String[] args) { System.out.println("Hi!"); } }' > Hi.java
-          javac Hi.java
-          native-image Hi
-          ./hi
-      
-      - name: Upload binary
-        uses: actions/upload-artifact@v3
-        with:
-          name: hi-${{ matrix.os }}
-          path: hi*
+      - uses: actions/checkout@v4
+      - name: Display dotnet version
+        run: dotnet --version
+      - name: Display arch
+        run: uname -m && arch
