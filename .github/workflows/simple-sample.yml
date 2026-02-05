@@ -1,0 +1,9 @@
+name: simple-sample
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: show time
+        run: echo $(date)
