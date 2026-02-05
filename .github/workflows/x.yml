@@ -1,4 +1,4 @@
-name: simple-sample
+name: x
 on: workflow_dispatch
 jobs:
   build:
@@ -8,4 +8,8 @@ jobs:
       - name: Display dotnet version
         run: dotnet --version
       - name: Display arch
-        run: uname -m && arch
+        run: uname -m
+      - name: Display clang
+        run: clang --version
+      - name: Display PATH
+        run: echo $PATH
