@@ -13,12 +13,12 @@ jobs:
         run: |
           wget https://dl.google.com/android/repository/android-ndk-r27d-linux.zip
           unzip -q android-ndk-r27d-linux.zip
-          ls
-          echo "$(pwd)/android-ndk-r27d/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
+          ls android-ndk-r27d
           echo "ANDROID_NDK_HOME=$(pwd)/android-ndk-r27d" >> $GITHUB_ENV
       - name: Display PATH
         run: echo $PATH
-      - name: Display clang
-        run: clang --version
       - name: Display ANDROID_NDK_HOME
         run: echo $ANDROID_NDK_HOME
+      - name: Display clang
+        run: clang --version
+
