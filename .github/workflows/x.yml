@@ -20,12 +20,13 @@ jobs:
         if: steps.cache-ndk.outputs.cache-hit != 'true'
         run: |
           curl -L https://github.com/SnowNF/ndk-aarch64-linux/releases/download/0.0.2/android-ndk-r29-linux-aarch64.tar.gz -o ndk.tar.gz
+          # 解压目录为 r29/
           tar -xzf ndk.tar.gz
-          ls
       - name: Cached Arm64 NDK
         run: |
-          ls r29
+          ls r29/
           echo "ANDROID_NDK_HOME=$(pwd)/r29" >> $GITHUB_ENV
+          echo "$(pwd)/r29/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
       - name: Display PATH
         run: echo $PATH
       - name: Display ANDROID_NDK_HOME
@@ -41,10 +42,9 @@ jobs:
           ls /usr/include/c++/
       - name: Display clang target
         run: |
-          export CLANG_BIN=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/
-          $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang --version
+          clang --version
           ls $CLANG_BIN
-          $ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
+          clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
 #      - name: build clang android target
 #        run: clang helloworld.c -fsyntax-only
 #      - name: build clang android target
