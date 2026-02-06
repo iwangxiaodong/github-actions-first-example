@@ -5,9 +5,8 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v4
-      - name: Install linux software - 该包还未发布但AOT依赖上了 sudo apt-get install -y libxml2-16
+      - name: Install Linux Software - AOT 构建依赖了 libxml2-16 但 ubuntu 25 才会内置
         run: |
-          sudo apt-get update
           find /usr/lib -name "libxml2.so*"
           sudo ln -s /usr/lib/aarch64-linux-gnu/libxml2.so.2 /usr/lib/aarch64-linux-gnu/libxml2.so.16
       - name: Display version
@@ -21,7 +20,7 @@ jobs:
             # 缓存文件夹
             path: r29
             key: non-cache-dir-1
-      - name: Download Arm64 NDK
+      - name: Download AARCH64 NDK
         if: steps.cache-files.outputs.cache-hit != 'true'
         run: |
           curl -L https://github.com/SnowNF/ndk-aarch64-linux/releases/download/0.0.2/android-ndk-r29-linux-aarch64.tar.gz -o ndk.tar.gz
@@ -42,20 +41,12 @@ jobs:
           clang --version
           clang++ --version
           clang++ --target=aarch64-linux-android24 --version
-          clang++ -xc++ -E -v /dev/null
-          ls /usr/include/c++/
       - name: Display clang target
         run: |
           clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
           dotnet new console -o HelloBionic --aot
           cd HelloBionic
           dotnet publish -r linux-bionic-arm64 -p:DisableUnsupportedError=true -p:PublishAotUsingRuntimePack=true
-          ls bin/Release/net11.0/linux-bionic-arm64/publish
-#      - name: build clang android target
-#        run: clang helloworld.c -fsyntax-only
-#      - name: build clang android target
-#        run: clang helloworld.c --target=aarch64-linux-android24 -rtlib=compiler-rt -unwindlib=none --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot/
-#      - name: build clang++ android target
-#        run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
+          ls bin/Release/net*.0/linux-bionic-arm64/publish
         
 
