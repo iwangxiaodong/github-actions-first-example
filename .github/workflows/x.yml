@@ -41,11 +41,13 @@ jobs:
           ls /usr/include/c++/
       - name: Display clang target
         run: |
-          clang --target=aarch64-linux-android24 --version
+          alias clang='$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang'
+          clang --version
+          clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
 #      - name: build clang android target
 #        run: clang helloworld.c -fsyntax-only
-      - name: build clang android target
-        run: clang helloworld.c --target=aarch64-linux-android24 -rtlib=compiler-rt -unwindlib=none --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot/
+#      - name: build clang android target
+#        run: clang helloworld.c --target=aarch64-linux-android24 -rtlib=compiler-rt -unwindlib=none --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot/
 #      - name: build clang++ android target
 #        run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
         
