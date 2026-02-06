@@ -45,6 +45,9 @@ jobs:
           clang --version
           ls $CLANG_BIN
           clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
+          dotnet new console -o HelloBionic --aot
+          cd HelloBionic
+          dotnet publish -r linux-bionic-arm64 -p:DisableUnsupportedError=true -p:PublishAotUsingRuntimePack=true
 #      - name: build clang android target
 #        run: clang helloworld.c -fsyntax-only
 #      - name: build clang android target
