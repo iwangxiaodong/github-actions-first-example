@@ -41,7 +41,9 @@ jobs:
       - name: Display clang target
         run: |
           clang --target=aarch64-linux-android24 --version
-      - name: build clang++ android target
-        run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
+      - name: build clang android target
+        run: clang helloworld.c --target=aarch64-linux-android24 -fsyntax-only
+#      - name: build clang++ android target
+#        run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
         
 
