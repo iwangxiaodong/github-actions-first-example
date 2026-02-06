@@ -41,7 +41,9 @@ jobs:
           ls /usr/include/c++/
       - name: Display clang target
         run: |
-          alias clang='$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android24-clang'
+          export CLANG_BIN=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/
+          ln -sf $CLANG_BIN/aarch64-linux-android24-clang $CLANG_BIN/clang
+          ls $CLANG_BIN
           clang --version
           clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
 #      - name: build clang android target
