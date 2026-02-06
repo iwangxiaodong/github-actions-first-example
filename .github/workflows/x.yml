@@ -33,10 +33,15 @@ jobs:
       - name: Display clang
         run: clang --version
       - name: Display clang++
-        run: clang++ --version
+        run: clang++ --version -E
+      - name: Display clang++ c++
+        run: |
+          clang++ --target=aarch64-linux-android24 --version -E
+          ls /usr/include/c++/
       - name: Display clang target
-        run: clang --target=aarch64-linux-android24 --version
-      - name: build clang android target
+        run: |
+          clang --target=aarch64-linux-android24 --version
+      - name: build clang++ android target
         run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
         
 
