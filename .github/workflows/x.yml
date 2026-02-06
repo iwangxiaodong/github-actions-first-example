@@ -14,8 +14,8 @@ jobs:
         uses: actions/cache@v4
         with:
             # 缓存保存的路径
-            path: android-ndk-r29
-            key: android-ndk-r29
+            path: r29
+            key: r29
       - name: Download Arm64 NDK
         if: steps.cache-ndk.outputs.cache-hit != 'true'
         run: |
