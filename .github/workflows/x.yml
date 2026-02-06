@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v4
-      - name: Install Latest Libstdc++
+      - name: Install build-essential
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential
@@ -46,8 +46,10 @@ jobs:
         run: |
           clang --target=aarch64-linux-android24 --version
           clang++ -xc++ -E -v /dev/null
-#      - name: build clang android target
-#        run: clang helloworld.c --target=aarch64-linux-android24 -fsyntax-only
+      - name: build clang android target
+        run: clang helloworld.c -fsyntax-only
+      - name: build clang android target
+        run: clang helloworld.c --target=aarch64-linux-android24 -fsyntax-only
 #      - name: build clang++ android target
 #        run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
         
