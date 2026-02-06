@@ -41,15 +41,15 @@ jobs:
       - name: Display clang++ c++
         run: |
           clang++ --target=aarch64-linux-android24 --version
+          clang++ -xc++ -E -v /dev/null
           ls /usr/include/c++/
       - name: Display clang target
         run: |
           clang --target=aarch64-linux-android24 --version
-          clang++ -xc++ -E -v /dev/null
       - name: build clang android target
         run: clang helloworld.c -fsyntax-only
       - name: build clang android target
-        run: clang helloworld.c --target=aarch64-linux-android24 -fsyntax-only
+        run: clang helloworld.c --target=aarch64-linux-android24 -fsyntax-only --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/
 #      - name: build clang++ android target
 #        run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
         
