@@ -32,6 +32,11 @@ jobs:
         run: echo $ANDROID_NDK_HOME
       - name: Display clang
         run: clang --version
+      - name: Display clang++
+        run: clang++ --version
       - name: Display clang target
         run: clang --target=aarch64-linux-android24 --version
+      - name: build clang android target
+        run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
+        
 
