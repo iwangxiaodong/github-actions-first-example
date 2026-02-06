@@ -24,8 +24,8 @@ jobs:
           ls
       - name: Cached Arm64 NDK
         run: |
-          ls android-ndk-r29
-          echo "ANDROID_NDK_HOME=$(pwd)/android-ndk-r29" >> $GITHUB_ENV
+          ls r29
+          echo "ANDROID_NDK_HOME=$(pwd)/r29" >> $GITHUB_ENV
       - name: Display PATH
         run: echo $PATH
       - name: Display ANDROID_NDK_HOME
