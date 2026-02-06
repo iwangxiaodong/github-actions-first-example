@@ -5,6 +5,11 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v4
+      - name: Install Latest Libstdc++
+        run: |
+          sudo apt-get update
+          # ubuntu-latest 默认已有，这步通常是为了升级到特定版本
+          sudo apt-get install -y libstdc++-12-dev
       - name: Display dotnet version
         run: dotnet --version
       - name: Display arch
