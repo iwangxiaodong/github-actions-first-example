@@ -8,8 +8,7 @@ jobs:
       - name: Install Latest Libstdc++
         run: |
           sudo apt-get update
-          # ubuntu-latest 默认已有，这步通常是为了升级到特定版本
-          sudo apt-get install -y libstdc++-12-dev
+          sudo apt-get install -y build-essential
       - name: Display dotnet version
         run: dotnet --version
       - name: Display arch
@@ -38,16 +37,17 @@ jobs:
       - name: Display clang
         run: clang --version
       - name: Display clang++
-        run: clang++ --version -E
+        run: clang++ --version
       - name: Display clang++ c++
         run: |
-          clang++ --target=aarch64-linux-android24 --version -E
+          clang++ --target=aarch64-linux-android24 --version
           ls /usr/include/c++/
       - name: Display clang target
         run: |
           clang --target=aarch64-linux-android24 --version
-      - name: build clang android target
-        run: clang helloworld.c --target=aarch64-linux-android24 -fsyntax-only
+          clang++ -xc++ -E -v /dev/null
+#      - name: build clang android target
+#        run: clang helloworld.c --target=aarch64-linux-android24 -fsyntax-only
 #      - name: build clang++ android target
 #        run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
         
