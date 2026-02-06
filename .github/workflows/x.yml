@@ -10,6 +10,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y build-essential libxml2-dev libxml2 libicu-dev zlib1g-dev
           find /usr/lib -name "libxml2.so*"
+          sudo ln -s /usr/lib/aarch64-linux-gnu/libxml2.so.2 /usr/lib/aarch64-linux-gnu/libxml2.so.16
       - name: Display dotnet version
         run: dotnet --version
       - name: Display arch
