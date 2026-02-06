@@ -19,13 +19,14 @@ jobs:
         with:
             # 缓存保存的路径
             path: r29
-            key: r29
+            key: r29x
       - name: Download Arm64 NDK
         if: steps.cache-ndk.outputs.cache-hit != 'true'
         run: |
           curl -L https://github.com/SnowNF/ndk-aarch64-linux/releases/download/0.0.2/android-ndk-r29-linux-aarch64.tar.gz -o ndk.tar.gz
           # 解压目录为 r29/
           tar -xzf ndk.tar.gz
+          rm ndk.tar.gz
       - name: Cached Arm64 NDK
         run: |
           ls r29/
