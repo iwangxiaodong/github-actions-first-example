@@ -45,7 +45,7 @@ jobs:
 #      - name: build clang android target
 #        run: clang helloworld.c -fsyntax-only
       - name: build clang android target
-        run: clang helloworld.c --target=aarch64-linux-android24 --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot/
+        run: clang helloworld.c --target=aarch64-linux-android24 -rtlib=compiler-rt -unwindlib=none --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot/
 #      - name: build clang++ android target
 #        run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
         
