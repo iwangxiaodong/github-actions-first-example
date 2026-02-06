@@ -39,10 +39,12 @@ jobs:
           clang++ --target=aarch64-linux-android24 --version
           clang++ -xc++ -E -v /dev/null
           ls /usr/include/c++/
+          echo "$(pwd)/android-ndk-r27d/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
       - name: Display clang target
         run: |
           export CLANG_BIN=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/
           ln -sf $CLANG_BIN/aarch64-linux-android24-clang $CLANG_BIN/clang
+          echo "$(pwd)/android-ndk-r27d/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
           ls $CLANG_BIN
           clang --version
           clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
