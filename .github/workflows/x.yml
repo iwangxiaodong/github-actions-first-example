@@ -5,10 +5,6 @@ jobs:
     runs-on: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@v4
-      - name: Install build-essential
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential
       - name: Display dotnet version
         run: dotnet --version
       - name: Display arch
@@ -46,10 +42,10 @@ jobs:
       - name: Display clang target
         run: |
           clang --target=aarch64-linux-android24 --version
+#      - name: build clang android target
+#        run: clang helloworld.c -fsyntax-only
       - name: build clang android target
-        run: clang helloworld.c -fsyntax-only
-      - name: build clang android target
-        run: clang helloworld.c --target=aarch64-linux-android24 -fsyntax-only --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot/
+        run: clang helloworld.c --target=aarch64-linux-android24 --sysroot=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/sysroot/
 #      - name: build clang++ android target
 #        run: clang++ helloworld.cpp --target=aarch64-linux-android24 -fsyntax-only
         
