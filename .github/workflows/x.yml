@@ -8,7 +8,8 @@ jobs:
       - name: Install linux software
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential libxml2-dev
+          sudo apt-get install -y build-essential libxml2-dev libxml2 libicu-dev zlib1g-dev
+          find /usr/lib -name "libxml2.so*"
       - name: Display dotnet version
         run: dotnet --version
       - name: Display arch
