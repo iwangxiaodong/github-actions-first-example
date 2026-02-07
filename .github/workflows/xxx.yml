@@ -54,8 +54,7 @@ jobs:
           dotnet new sln --format "sln"
           dotnet sln add android-aot-example.csproj
           ls
-          cat android-aot-example.csproj
           cat android-aot-example.sln
           cd -
-          ./Godot_v4.6-stable_mono_linux_x86_64/Godot_v4.6-stable_mono_linux.x86_64 --headless --export-release Linux game.linux --quit -v --path .
+          ./Godot_v4.6-stable_mono_linux_x86_64/Godot_v4.6-stable_mono_linux.x86_64 --headless --export-release Linux game.linux --quit -v --path other/godot/aot/android-aot-example/
           ls
