@@ -1,0 +1,44 @@
+name: xxx
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Linux Software - AOT 构建依赖了 libxml2-16 但 ubuntu 25 才会内置
+        run: |
+          find /usr/lib -name "libxml2.so*"
+          sudo ln -s /usr/lib/$(dpkg-architecture -q DEB_HOST_GNU_TYPE)/libxml2.so.2 /usr/lib/$(dpkg-architecture -q DEB_HOST_GNU_TYPE)/libxml2.so.16
+          echo $PATH
+          echo "$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
+      - name: Display ENV
+        run: |
+          echo $PATH
+          echo $ANDROID_NDK_HOME
+          echo $ANDROID_HOME
+      - name: Display clang/clang++
+        run: |
+          uname -m
+          dotnet --version
+          clang --version
+          clang++ --version
+          clang++ --target=aarch64-linux-android24 --version
+          clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
+      - name: Cache Files
+        id: cache-files
+        uses: actions/cache@v4
+        with:
+            # 缓存文件夹
+            path: |
+              Godot_v4.6-stable_mono_linux_x86_64
+            key: non-cache-dir-1
+      - name: Download Godot
+        if: steps.cache-files.outputs.cache-hit != 'true'
+        run: |
+          wget https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_mono_linux_x86_64.zip
+          unzip Godot_v4.6-stable_mono_linux_x86_64.zip
+          rm Godot_v4.6-stable_mono_linux_x86_64.zip
+          ./Godot_v4.6-stable_mono_linux_x86_64/Godot_v4.6-stable_mono_linux.x86_64 --version
+      - name: x
+        run: |
+          ls Godot_v4.6-stable_mono_linux_x86_64/
