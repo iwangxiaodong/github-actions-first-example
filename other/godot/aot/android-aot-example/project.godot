@@ -1,0 +1,7 @@
+config_version=5
+[application]
+config/name="android-aot-example"
+config/features=PackedStringArray("4.6")
+run/main_scene="res://Game.tscn"
+[dotnet]
+project/assembly_name="android-aot-example"
