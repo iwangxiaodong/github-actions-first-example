@@ -1,5 +1,5 @@
-[gd_scene format=3 uid="uid://c4k2q2soykxa4"]
-[ext_resource type="Script" uid="uid://dvyksn30gk5wv" path="res://Game.cs" id="1_wbfu4"]
+[gd_scene format=3]
+[ext_resource type="Script" path="res://Game.cs" id="1_wbfu4"]
 [node name="Button" type="Button" unique_id=1741294667]
 offset_right = 100.0
 offset_bottom = 50.0
