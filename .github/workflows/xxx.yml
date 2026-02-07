@@ -9,7 +9,6 @@ jobs:
         run: |
           find /usr/lib -name "libxml2.so*"
           sudo ln -s /usr/lib/$(dpkg-architecture -q DEB_HOST_GNU_TYPE)/libxml2.so.2 /usr/lib/$(dpkg-architecture -q DEB_HOST_GNU_TYPE)/libxml2.so.16
-          echo $PATH
           echo "$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
       - name: Display ENV
         run: |
@@ -52,3 +51,4 @@ jobs:
         run: |
           ls Godot_v4.6-stable_mono_linux_x86_64/
           ls $HOME/.local/share/godot/export_templates/4.6.stable.mono/
+          ./Godot_v4.6-stable_mono_linux_x86_64/Godot_v4.6-stable_mono_linux.x86_64 --headless --script without_project.gd
