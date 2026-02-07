@@ -45,7 +45,9 @@ jobs:
           unzip Godot_v4.6-stable_mono_export_templates.tpz -d tmp-tpz
           rm Godot_v4.6-stable_mono_export_templates.tpz
           export TDIR=$HOME/.local/share/godot/export_templates/4.6.stable.mono/
-          mkdir -p $TDIR & mv tmp-tpz/templates/* $TDIR
+          mkdir -p $TDIR
+          ls $HOME/.local/share/godot/export_templates/
+          mv tmp-tpz/templates/* $TDIR
       - name: x
         run: |
           ls Godot_v4.6-stable_mono_linux_x86_64/
