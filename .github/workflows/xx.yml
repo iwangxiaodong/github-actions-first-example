@@ -1,0 +1,35 @@
+name: xx
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Linux Software - AOT 构建依赖了 libxml2-16 但 ubuntu 25 才会内置
+        run: |
+          find /usr/lib -name "libxml2.so*"
+          sudo ln -s /usr/lib/aarch64-linux-gnu/libxml2.so.2 /usr/lib/aarch64-linux-gnu/libxml2.so.16
+      - name: Display version
+        run: |
+          uname -m
+          dotnet --version
+      - name: Cached NDK
+        run: |
+          echo "$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
+      - name: Display ENV
+        run: |
+          echo $PATH
+          echo $ANDROID_NDK_HOME
+          ls $ANDROID_NDK_HOME
+      - name: Display clang/clang++
+        run: |
+          clang --version
+          clang++ --version
+          clang++ --target=aarch64-linux-android24 --version
+      - name: Display clang target
+        run: |
+          clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
+          dotnet new console -o HelloBionic --aot
+          cd HelloBionic
+          dotnet publish -r linux-bionic-arm64 -p:DisableUnsupportedError=true -p:PublishAotUsingRuntimePack=true
+          ls bin/Release/net*.0/linux-bionic-arm64/publish
