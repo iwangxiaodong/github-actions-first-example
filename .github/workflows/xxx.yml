@@ -49,10 +49,10 @@ jobs:
           mv tmp-tpz/templates/* $TDIR
       - name: x
         run: |
-          ./Godot_v4.6-stable_mono_linux_x86_64/Godot_v4.6-stable_mono_linux.x86_64 --headless --script without_project.gd
+          $HOME/Godot_v4.6-stable_mono_linux_x86_64/Godot_v4.6-stable_mono_linux.x86_64 --headless --script without_project.gd
           cd other/godot/aot/android-aot-example/
           dotnet new sln --format "sln"
           dotnet sln add android-aot-example.csproj
-          ./Godot_v4.6-stable_mono_linux_x86_64/Godot_v4.6-stable_mono_linux.x86_64 --headless --export-release Linux game.linux --quit -v --path .
-          ls other/godot/aot/android-aot-example/
+          ls
+          $HOME/Godot_v4.6-stable_mono_linux_x86_64/Godot_v4.6-stable_mono_linux.x86_64 --headless --export-release Linux game.linux --quit -v --path .
           ls
