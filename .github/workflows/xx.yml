@@ -8,13 +8,8 @@ jobs:
       - name: Install Linux Software - AOT 构建依赖了 libxml2-16 但 ubuntu 25 才会内置
         run: |
           find /usr/lib -name "libxml2.so*"
-          sudo ln -s /usr/lib/aarch64-linux-gnu/libxml2.so.2 /usr/lib/aarch64-linux-gnu/libxml2.so.16
-      - name: Display version
-        run: |
-          uname -m
-          dotnet --version
-      - name: Cached NDK
-        run: |
+          sudo ln -s /usr/lib/$(dpkg-architecture -q DEB_HOST_GNU_TYPE)/libxml2.so.2 /usr/lib/$(dpkg-architecture -q DEB_HOST_GNU_TYPE)/libxml2.so.16
+          echo $PATH
           echo "$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
       - name: Display ENV
         run: |
@@ -23,6 +18,8 @@ jobs:
           ls $ANDROID_NDK_HOME
       - name: Display clang/clang++
         run: |
+          uname -m
+          dotnet --version
           clang --version
           clang++ --version
           clang++ --target=aarch64-linux-android24 --version
