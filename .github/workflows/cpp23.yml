@@ -1,0 +1,17 @@
+name: cpp23
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Display ENV
+        run: |
+          echo $PATH
+      - name: Display clang/clang++
+        run: |
+          uname -m
+          dotnet --version
+          clang --version
+          clang++ --version
+          clang++ -std=c++23 cpp23helloworld.cpp -fsyntax-only
