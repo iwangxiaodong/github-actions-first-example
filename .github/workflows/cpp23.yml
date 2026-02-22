@@ -20,3 +20,4 @@ jobs:
           #clang++ -std=c++23 -stdlib=libc++ -fmodule-file=std=std.pcm cpp23helloworld.cpp -fsyntax-only
           clang++ -std=c++23 -stdlib=libc++ cpp23helloworld.cpp -fsyntax-only
           ls -la
+          cat /usr/lib/llvm-18/share/libc++/v1/module.modulemap
