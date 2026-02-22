@@ -14,9 +14,9 @@ jobs:
           clang++ --version
           sudo apt install libc++-dev libc++abi-dev -y
           # 查找 libc++-dev 的标准库模块文件并编译
-          find /usr/lib/ -name "std.cppm" 2>/dev/null
-          clang++ -std=c++23 -stdlib=libc++ -Wno-reserved-identifier -Wno-reserved-module-identifier --precompile -o std.pcm /usr/lib/llvm-18/share/libc++/v1/std.cppm
-          clang++ -std=c++23 -stdlib=libc++ -fmodule-file=std=std.pcm cpp23helloworld.cpp -fsyntax-only
+          #find /usr/lib/ -name "std.cppm" 2>/dev/null
+          ls /usr/lib/llvm-18/share/libc++/v1/
+          #clang++ -std=c++23 -stdlib=libc++ -Wno-reserved-identifier -Wno-reserved-module-identifier --precompile -o std.pcm /usr/lib/llvm-18/share/libc++/v1/std.cppm
+          #clang++ -std=c++23 -stdlib=libc++ -fmodule-file=std=std.pcm cpp23helloworld.cpp -fsyntax-only
+          clang++ -std=c++23 -stdlib=libc++ cpp23helloworld.cpp -fsyntax-only
           ls -la
-          #clang++ -std=c++23 -stdlib=libc++ cpp23helloworld.cpp -fsyntax-only
-
