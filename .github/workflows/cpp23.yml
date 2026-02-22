@@ -14,7 +14,8 @@ jobs:
           sudo apt install libc++-dev libc++abi-dev -y
           clang --version
           clang++ --version
-          ls /usr/share/libc++/
-          clang++ -std=c++23 -stdlib=libc++ -Wno-reserved-identifier -Wno-reserved-module-identifier --precompile -o std.pcm /usr/share/libc++/v1/std.cppm
-          clang++ -std=c++23 -stdlib=libc++ -fmodule-file=std=std.pcm cpp23helloworld.cpp -fsyntax-only
+          find /usr -name "std.cppm" 2>/dev/null
+          #clang++ -std=c++23 -stdlib=libc++ -Wno-reserved-identifier -Wno-reserved-module-identifier --precompile -o std.pcm /usr/share/libc++/v1/std.cppm
+          #clang++ -std=c++23 -stdlib=libc++ -fmodule-file=std=std.pcm cpp23helloworld.cpp -fsyntax-only
+          clang++ -std=c++23 -stdlib=libc++ cpp23helloworld.cpp -fsyntax-only
           dpkg -l | grep "libc++"
