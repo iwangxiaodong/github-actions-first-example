@@ -11,7 +11,8 @@ jobs:
       - name: Display clang/clang++
         run: |
           uname -m
-          dotnet --version
+          sudo apt install libc++-dev libc++abi-dev -y
           clang --version
           clang++ --version
           clang++ -std=c++23 -stdlib=libc++ -fmodules -fbuiltin-module-map cpp23helloworld.cpp -fsyntax-only
+          dpkg -l | grep "libc++"
