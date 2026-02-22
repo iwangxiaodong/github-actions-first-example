@@ -11,7 +11,6 @@ jobs:
       - name: Display clang/clang++
         run: |
           uname -m
-          dpkg -l | grep "libc++"
           sudo apt install libc++-dev libc++abi-dev -y
           clang++ --version
           #find /usr -name "std.cppm" 2>/dev/null
