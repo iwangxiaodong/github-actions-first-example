@@ -1,5 +1,5 @@
 //  import std;
-  import <print>
+  import <print>;
 //  #include <print>
   int main() {
     std::println("Hi!");
