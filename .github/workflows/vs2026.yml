@@ -19,3 +19,8 @@ jobs:
           $componentId = "Microsoft.VisualStudio.Component.VC.Tools.x86.x64"
           $isInstalled = vswhere -latest -requires $componentId -property installationPath
           echo $isInstalled
+
+          dotnet new console -o HelloBionic --aot
+          cd HelloBionic
+          dotnet publish -r win-x64 -p:DisableUnsupportedError=true -p:PublishAotUsingRuntimePack=true
+          ls bin/Release/net*.0/win-x64/publish -ErrorAction SilentlyContinue
