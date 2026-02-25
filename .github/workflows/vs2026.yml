@@ -12,14 +12,13 @@ jobs:
         uses: ilammy/msvc-dev-cmd@v1
       - name: Test
         run: |
-          dotnet --info
-          echo $env:PATH
-          Get-Command vswhere
+          #dotnet --info
+          #echo $env:PATH
+          #Get-Command vswhere
           $componentId = "Microsoft.VisualStudio.Component.VC.Tools.x86.x64"
           $isInstalled = vswhere -latest -requires $componentId -property installationPath
           echo $isInstalled
 
-          dotnet new console -o HelloBionic --aot
-          cd HelloBionic
-          dotnet publish -r win-x64 -p:DisableUnsupportedError=true -p:PublishAotUsingRuntimePack=true
-          ls bin/x64/Release/net*.0/win-x64/publish/ -ErrorAction SilentlyContinue
+          dotnet new console -o hi --aot
+          dotnet publish hi/hi.csproj -r win-x64 -p:DisableUnsupportedError=true -p:PublishAotUsingRuntimePack=true
+          ls hi/bin/x64/Release/net*.0/win-x64/publish/* -ErrorAction SilentlyContinue
