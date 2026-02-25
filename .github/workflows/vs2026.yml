@@ -14,4 +14,7 @@ jobs:
         run: |
           dotnet --info
           echo $env:PATH
-          where.exe link.exe
+          Get-Command vswhere
+          #where.exe link.exe
+          $componentId = "Microsoft.VisualStudio.Component.VC.Tools.x86.x64"
+          vswhere -latest -requires $componentId -property installationPath
