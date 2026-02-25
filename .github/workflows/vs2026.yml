@@ -5,6 +5,11 @@ jobs:
     runs-on: windows-2025-vs2026
     steps:
       - uses: actions/checkout@v4
-      - name: Display ENV
+      - name: Display Info
         run: |
           echo $(hostname)
+      - name: Enable MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+      - name: Test
+        run: |
+          dotnet --info
