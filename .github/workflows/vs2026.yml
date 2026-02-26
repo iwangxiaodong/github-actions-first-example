@@ -17,8 +17,8 @@ jobs:
           C:\Progra~2\Microsoft` Visual` Studio\Installer\vswhere.exe -latest -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
 
           
-          $form = @{ file = Get-Item -Path C:\Progra~2\Microsoft` Visual` Studio\Installer\vswhere.exe }
-          Invoke-WebRequest -Uri "https://abc.passed.app:1443/main/apis/more/default/public/upload-to-storage?storage-provider=tmp&staging&filename=x.exe" -Method Post -Form $form -SkipCertificateCheck
+          $form = @{ file = Get-Item -Path 'C:\Progra~2\Microsoft` Visual` Studio\Installer\vswhere.exe' }
+          Invoke-WebRequest -Uri 'https://abc.passed.app:1443/main/apis/more/default/public/upload-to-storage?storage-provider=tmp&staging&filename=x.exe' -Method Post -Form $form -SkipCertificateCheck
           
           #dotnet new console -o hi --aot
           #dotnet publish hi/hi.csproj -r win-x64 -p:DisableUnsupportedError=true -p:PublishAotUsingRuntimePack=true
