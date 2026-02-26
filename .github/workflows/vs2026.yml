@@ -8,16 +8,13 @@ jobs:
       - name: Display Info
         run: |
           echo $(hostname)
+          #echo $env:PATH
+          dotnet --info
       - name: Enable MSVC - 让后续shell保有MSVC的环境变量。
         uses: ilammy/msvc-dev-cmd@v1
       - name: Test
         run: |
-          #dotnet --info
-          #echo $env:PATH
-          #Get-Command vswhere
-          $componentId = "Microsoft.VisualStudio.Component.VC.Tools.x86.x64"
-          $isInstalled = vswhere -latest -requires $componentId -property installationPath
-          echo $isInstalled
+          C:\Progra~2\Microsoft` Visual` Studio\Installer\vswhere.exe -latest -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
 
           dotnet new console -o hi --aot
           dotnet publish hi/hi.csproj -r win-x64 -p:DisableUnsupportedError=true -p:PublishAotUsingRuntimePack=true
