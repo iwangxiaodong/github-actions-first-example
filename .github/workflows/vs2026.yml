@@ -16,9 +16,6 @@ jobs:
         run: |
           C:\Progra~2\Microsoft` Visual` Studio\Installer\vswhere.exe -latest -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
 
-          $Uri = 'https://abc.passed.app:1443/main/apis/more/default/public/upload-to-storage?storage-provider=tmp&staging&filename=x.bat';
-          Invoke-WebRequest -Uri $Uri -Method Post -Form @{ file = Get-Item -Path 'C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build\vcvarsall.bat' } -HttpVersion 2.0 -Verbose
-          
           #dotnet new console -o hi --aot
           #dotnet publish hi/hi.csproj -r win-x64 -p:DisableUnsupportedError=true -p:PublishAotUsingRuntimePack=true
           #ls hi/bin/x64/Release/net*.0/win-x64/publish/* -ErrorAction SilentlyContinue
