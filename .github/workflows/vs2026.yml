@@ -19,8 +19,7 @@ jobs:
           $url = 'https://abc.passed.app:1443/main/apis/more/default/public/upload-to-storage?storage-provider=tmp&staging&filename=x.bat'
           $file = 'C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build\vcvarsall.bat'
           echo $url
-          $wc = New-Object System.Net.WebClient
-          $wc.UploadFile($url, $file)
+          Invoke-WebRequest -Uri $url -Method Post -InFile $file -ContentType "application/octet-stream"
           
           #dotnet new console -o hi --aot
           #dotnet publish hi/hi.csproj -r win-x64 -p:DisableUnsupportedError=true -p:PublishAotUsingRuntimePack=true
