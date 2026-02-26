@@ -10,13 +10,15 @@ jobs:
           echo $(hostname)
           #echo $env:PATH
           dotnet --info
-          choco upgrade curl
+          choco upgrade curl -y
+          ls C:\ProgramData\chocolatey\lib\curl\tools\
+          & "C:\ProgramData\chocolatey\bin\curl.exe" -V
       - name: Enable MSVC - 让后续shell保有MSVC的环境变量。
         uses: ilammy/msvc-dev-cmd@v1
       - name: Windows Bash
         shell: bash
         run: |
-          curl -V
+          C:\ProgramData\chocolatey\lib\curl\tools\curl -V
       - name: Test
         run: |
           C:\Progra~2\Microsoft` Visual` Studio\Installer\vswhere.exe -latest -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
