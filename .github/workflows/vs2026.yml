@@ -17,7 +17,7 @@ jobs:
           C:\Progra~2\Microsoft` Visual` Studio\Installer\vswhere.exe -latest -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath
 
           
-          $form = @{ file = Get-Item -Path 'C:\Progra~2\Microsoft` Visual` Studio\Installer\vswhere.exe' }
+          $form = @{ file = Get-Item -Path 'C:\Program Files\Microsoft Visual Studio\18\Enterprise\VC\Auxiliary\Build\vcvarsall.bat' }
           Invoke-WebRequest -Uri 'https://abc.passed.app:1443/main/apis/more/default/public/upload-to-storage?storage-provider=tmp&staging&filename=x.exe' -Method Post -Form $form -SkipCertificateCheck
           
           #dotnet new console -o hi --aot
