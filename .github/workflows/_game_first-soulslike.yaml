@@ -63,4 +63,3 @@ jobs:
         run: |
           #ls arpg-statecharts/.godot/mono/
           7z a -tzip first-soulslike-game.zip C:/Users/runneradmin/AppData/Roaming/Godot/mono/build_logs/
-          C:/ProgramData/chocolatey/bin/curl.exe --http2 -F "file=@first-soulslike-game.zip" 'https://abc.passed.app:1443/main/apis/more/default/public/upload-to-storage?storage-provider=tmp&staging&filename=first-soulslike-game.zip'
