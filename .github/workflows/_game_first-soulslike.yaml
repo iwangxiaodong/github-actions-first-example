@@ -21,8 +21,8 @@ jobs:
         with:
             # 缓存文件夹 - 只读模式
             path: |
-              Godot_v4.6.1-stable_mono_linux_x86_64
-            key: godot-v4.6.1-mono
+              Godot_v4.6.1-stable_mono_linux_x86_64/
+            key: godot-v4.6.1-mono4
             enableCrossOsArchive: true
       - name: Test
         run: |
