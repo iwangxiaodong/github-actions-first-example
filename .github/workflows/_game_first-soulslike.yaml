@@ -34,10 +34,10 @@ jobs:
           7z x "Godot_v*-stable_mono_win64.zip" -y
           #ls Godot_v*-stable_mono_win64/Godot_v*-stable_mono_win64.exe
           
-          curl.exe -L -O https://storage.googleapis.com/staging.project-161922.appspot.com/arpg-statecharts.zip
+          curl.exe -L -O https://.../x.zip
           ls
-          7z x "arpg-statecharts.zip" -y
-          ls arpg-statecharts/
+          7z x "x.zip" -y
+          ls x/
       - name: Windows Bash
         env:
           NUGET_GITHUB_API_KEY: ${{ secrets.NUGET_GITHUB_API_KEY }}
