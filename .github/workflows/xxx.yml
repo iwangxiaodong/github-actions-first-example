@@ -25,31 +25,36 @@ jobs:
           clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
       - name: Cache Files
         id: cache-files
-        uses: actions/cache@v4
+        uses: actions/cache@v5.0.3
         with:
             # 缓存文件夹
             path: |
-              Godot_v4.6-stable_mono_linux_x86_64
-              /home/runner/.local/share/godot/export_templates/4.6.stable.mono/
-            key: ${{ github.workflow }}-non-cache-dir-1
+              Godot_v4.6.1-stable_mono_linux_x86_64/
+            key: godot-v4.6.1-mono4
+            enableCrossOsArchive: true
       - name: Download Godot
         if: steps.cache-files.outputs.cache-hit != 'true'
         run: |
-          wget https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_mono_linux_x86_64.zip
-          unzip Godot_v4.6-stable_mono_linux_x86_64.zip
-          rm Godot_v4.6-stable_mono_linux_x86_64.zip
-          ./Godot_v4.6-stable_mono_linux_x86_64/Godot_v4.6-stable_mono_linux.x86_64 --version
+          wget --quiet https://github.com/godotengine/godot/releases/download/4.6.1-stable/Godot_v4.6.1-stable_mono_linux_x86_64.zip
+          unzip Godot_v*-stable_mono_linux_x86_64.zip
+          rm Godot_v*-stable_mono_linux_x86_64.zip
+          # touch 不支持*通配符
+          touch Godot_v4.6.1-stable_mono_linux_x86_64/_sc_
+          ./Godot_v*-stable_mono_linux_x86_64/Godot_v*-stable_mono_linux.x86_64 --version
 
-          wget https://github.com/godotengine/godot/releases/download/4.6-stable/Godot_v4.6-stable_mono_export_templates.tpz
-          unzip Godot_v4.6-stable_mono_export_templates.tpz -d tmp-tpz
-          rm Godot_v4.6-stable_mono_export_templates.tpz
-          export TDIR=$HOME/.local/share/godot/export_templates/4.6.stable.mono/
+          wget --quiet https://github.com/godotengine/godot/releases/download/4.6.1-stable/Godot_v4.6.1-stable_mono_export_templates.tpz
+          unzip Godot_v*-stable_mono_export_templates.tpz -d tmp-tpz
+          rm Godot_v*-stable_mono_export_templates.tpz
+          #export TDIR=$HOME/.local/share/godot/export_templates/4.6.1.stable.mono/
+          export TDIR=Godot_v4.6.1-stable_mono_linux_x86_64/editor_data/export_templates/4.6.1.stable.mono/
           mkdir -p $TDIR
-          ls $HOME/.local/share/godot/export_templates/
           mv tmp-tpz/templates/* $TDIR
+          ls -la $TDIR
+          echo $TDIR
+          ls -la Godot_v*-stable_mono_linux_x86_64/
       - name: x
         run: |
-          ./Godot_v4.6-stable_mono_linux_x86_64/Godot_v4.6-stable_mono_linux.x86_64 --headless --script without_project.gd
+          ./Godot_v4.6.1-stable_mono_linux_x86_64/Godot_v4.6.1-stable_mono_linux.x86_64 --headless --script without_project.gd
           cd other/godot/aot/android-aot-example/
           dotnet new sln --format "sln"
           dotnet sln add android-aot-example.csproj
