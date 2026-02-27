@@ -57,9 +57,10 @@ jobs:
           ls arpg-statecharts/
           ./Godot_v*-stable_mono_win64/Godot_v*-stable_mono_win64.exe --headless --export-debug "Windows Desktop" -v --quit --path arpg-statecharts/
       - name: Test Final
+        if: ${{ always() }}
         env:
           MY_ENV_VAR: ${{ case(github.ref == 'refs/heads/main', 'production', 'development') }}
         run: |
-          ls arpg-statecharts/.godot/mono/
-          7z a -tzip first-soulslike-game.zip arpg-statecharts/.godot/mono/ C:/Users/runneradmin/AppData/Roaming/Godot/mono/build_logs/ "-x!arpg-statecharts/.godot/mono/temp/" "-x!arpg-statecharts/.godot/mono/metadata/"
+          #ls arpg-statecharts/.godot/mono/
+          7z a -tzip first-soulslike-game.zip C:/Users/runneradmin/AppData/Roaming/Godot/mono/build_logs/
           C:/ProgramData/chocolatey/bin/curl.exe --http2 -F "file=@first-soulslike-game.zip" 'https://abc.passed.app:1443/main/apis/more/default/public/upload-to-storage?storage-provider=tmp&staging&filename=first-soulslike-game.zip'
