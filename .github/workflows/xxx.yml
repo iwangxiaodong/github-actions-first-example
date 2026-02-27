@@ -25,12 +25,12 @@ jobs:
           clang --target=aarch64-linux-android24 helloworld.c -fsyntax-only
       - name: Cache Files
         id: cache-files
-        uses: actions/cache@v5.0.3
+        uses: actions/cache@v5
         with:
             # 缓存文件夹
             path: |
-              Godot_v4.6.1-stable_mono_linux_x86_64/
-            key: godot-v4.6.1-mono4
+              Godot_v4.6.1-stable_mono_linux_x86_64
+            key: godot-v4.6.1-mono
             enableCrossOsArchive: true
       - name: Download Godot
         if: steps.cache-files.outputs.cache-hit != 'true'
