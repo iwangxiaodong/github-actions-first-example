@@ -1,5 +1,4 @@
-# vim.tiny .github/workflows/示例模板.yaml
-name: 示例模板.yaml
+name: .github/workflows/示例模板.yaml
 on: workflow_dispatch
 jobs:
   build:
