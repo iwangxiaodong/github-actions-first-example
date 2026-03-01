@@ -10,7 +10,7 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - name: windows-2025-vs2026 默认 pwsh，可显式指定 shell: bash，ubuntu-latest 默认 bash。
+      - name: windows-2025-vs2026 默认 pwsh，可显式指定 shell 为 Windows 精简版的 bash；ubuntu-latest 默认 bash。
         shell: bash
         run: |
           echo $(hostname)
