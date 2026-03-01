@@ -1,0 +1,18 @@
+name: .github/workflows/示例模板.yaml
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # gh 等命令需要 read、write 相关权限。
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: windows-2025-vs2026 默认 pwsh，可显式指定 shell: bash，ubuntu-latest 默认 bash。
+        shell: bash
+        run: |
+          echo $(hostname)
+
+          # gh 已内置，并通过管道解析 JSON 响应；比如列出产出物用量，应按期清理，避免超用。
+          gh api repos/${{ github.repository }}/actions/artifacts --paginate --jq '.artifacts[] | "\(.name) | ID: \(.id) | RUN ID: \(.workflow_run.id) | Size: \(.size_in_bytes / 1024 / 1024 | tonumber | round) MB"'
