@@ -1,0 +1,16 @@
+# .github/workflows/our-daily.yaml
+name: 'our-daily'
+
+on:
+  schedule:
+    - cron: '0 0 */1 * *' # runs daily
+  workflow_dispatch: # allows for manual invocation
+
+jobs:
+  our-daily:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: jtalk/url-health-check-action@v4
+        with:
+          # Check the following URLs one by one sequentially. urlString.split("|");
+          url: https://example.com|https://congci.com/robots.txt
